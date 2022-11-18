@@ -67,34 +67,41 @@ function promptPlayer() {
 }
 
 // Play main game consisting of 5 rounds
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    let roundResult = "";
-    let finalMessage = "It's a tie!"
+// function game() {
+//     let playerScore = 0;
+//     let computerScore = 0;
+//     let roundResult = "";
+//     let finalMessage = "It's a tie!"
 
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = promptPlayer();
-        const computerSelection = getComputerChoice();
-        roundResult = playRound(playerSelection, computerSelection);
+//     for (let i = 0; i < 5; i++) {
+//         const playerSelection = promptPlayer();
+//         const computerSelection = getComputerChoice();
+//         roundResult = playRound(playerSelection, computerSelection);
 
-        if (roundResult.includes("You Win")) {
-            playerScore++;
-        } else if (roundResult.includes("You Lose")) {
-            computerScore++;
-        }
+//         if (roundResult.includes("You Win")) {
+//             playerScore++;
+//         } else if (roundResult.includes("You Lose")) {
+//             computerScore++;
+//         }
 
-        console.log(`${playerScore}:${computerScore}. ${roundResult}`);
-    }
+//         console.log(`${playerScore}:${computerScore}. ${roundResult}`);
+//     }
 
-    if (playerScore > computerScore) {
-        return `Player: ${playerScore}, Computer: ${computerScore}. You Win!`
-    } else if (playerScore < computerScore) {
-        return `Player: ${playerScore}, Computer: ${computerScore}. You Lose!`
-    }
+//     if (playerScore > computerScore) {
+//         return `Player: ${playerScore}, Computer: ${computerScore}. You Win!`
+//     } else if (playerScore < computerScore) {
+//         return `Player: ${playerScore}, Computer: ${computerScore}. You Lose!`
+//     }
 
-    return finalMessage;
-}
+//     return finalMessage;
+// }
 
+const buttons = document.querySelectorAll('button');
 
-console.log(game());
+buttons.forEach(button => {
+    button.addEventListener('click', e => {
+        console.log(playRound(e.target.value, getComputerChoice()));
+    });
+});
+
+console.log("hi")
