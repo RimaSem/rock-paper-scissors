@@ -1,69 +1,54 @@
 // Get random computer choice: rock, paper or scissors
 function getComputerChoice() {
-    let choice = Math.floor(Math.random() * 3) + 1;
-    switch (choice) {
-        case 1:
-            choice = "Rock";
-            break;
-        case 2:
-            choice = "Paper";
-            break;
-        case 3:
-            choice = "Scissors";
-            break;
-    }
-    return choice;
+  let choice = Math.floor(Math.random() * 3) + 1;
+  switch (choice) {
+    case 1:
+      choice = "Rock";
+      break;
+    case 2:
+      choice = "Paper";
+      break;
+    case 3:
+      choice = "Scissors";
+      break;
+  }
+  return choice;
 }
 
-// Format player choice, so that it is in lowercase with first capitalized letter
-function formatText(str) {
-    return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
-}
-
+// // Format player choice, so that it is in lowercase with first capitalized letter
+// function formatText(str) {
+//   return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
+// }
 
 // Play one round of rock, paper, scissors
 function playRound(playerSelection, computerSelection) {
-    const player = formatText(playerSelection);
-    const youWinText = `You Win! ${player} beats ${computerSelection}`;
-    const youLoseText = `You Lose! ${computerSelection} beats ${player}`;
-    const fallbackText = "Oops, something went wrong. Try again!";
-    
-    if (player === computerSelection) {
-        return "It's a tie!";
-    } else if (player === "Rock") {
-        if (computerSelection === "Paper") {
-            return youLoseText;
-        } else {
-            return youWinText;
-        }
-    } else if (player === "Paper") {
-        if (computerSelection === "Scissors") {
-            return youLoseText;
-        } else {
-            return youWinText
-        }
-    } else if (player === "Scissors") {
-        if (computerSelection === "Rock") {
-            return youLoseText;
-        } else {
-            return youWinText;
-        }
-    } else {
-        return fallbackText;
-    }
-}
+  const youWinText = `You Win! ${playerSelection} beats ${computerSelection}`;
+  const youLoseText = `You Lose! ${computerSelection} beats ${playerSelection}`;
+  const fallbackText = "Oops, something went wrong. Try again!";
 
-// Player input validation
-function promptPlayer() {
-    while (true) {
-        let input = prompt("Choose rock, paper or scissors:");
-        input = formatText(input);
-        if (input === "Rock" || input === "Paper" || input === "Scissors") {
-            return input;
-        } else {
-            alert("Incorrect input. Try again");
-        }
+  if (playerSelection === computerSelection) {
+    return "It's a tie!";
+  } else if (playerSelection === "Rock") {
+    if (computerSelection === "Paper") {
+      return youLoseText;
+    } else {
+      return youWinText;
     }
+  } else if (playerSelection === "Paper") {
+    if (computerSelection === "Scissors") {
+      return youLoseText;
+    } else {
+      return youWinText;
+    }
+  } else if (playerSelection === "Scissors") {
+    if (computerSelection === "Rock") {
+      return youLoseText;
+    } else {
+      return youWinText;
+    }
+  } else {
+    return fallbackText;
+  }
 }
 
 // Play main game consisting of 5 rounds
@@ -96,12 +81,35 @@ function promptPlayer() {
 //     return finalMessage;
 // }
 
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll("img");
+const playerScore = document.querySelector("#p-scr");
+const computerScore = document.querySelector("#c-scr");
 
-buttons.forEach(button => {
-    button.addEventListener('click', e => {
-        console.log(playRound(e.target.value, getComputerChoice()));
-    });
+buttons.forEach((button) => {
+  button.addEventListener("click", game);
 });
 
-console.log("hi")
+function game(e) {
+  const score = document.querySelector(".score-title");
+  const text = playRound(e.target.className, getComputerChoice());
+
+  if (computerScore.textContent == 5 || playerScore.textContent == 5) return;
+
+  if (text.includes("You Win!") && playerScore.textContent == 4) {
+    ++playerScore.textContent;
+    score.textContent = "~~~ YOU ARE THE WINNER! ~~~";
+  } else if (text.includes("You Lose!") && computerScore.textContent == 4) {
+    ++computerScore.textContent;
+    score.textContent = "YOU LOST THE GAME! :(";
+  } else {
+    if (text.includes("You Win!")) {
+      ++playerScore.textContent;
+      score.textContent = text;
+    } else if (text.includes("You Lose!")) {
+      ++computerScore.textContent;
+      score.textContent = text;
+    } else {
+      score.textContent = text;
+    }
+  }
+}

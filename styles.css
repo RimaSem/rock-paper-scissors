@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Akshar:wght@300;400;500;600;700&family=Finger+Paint&display=swap");
+
+body {
+  margin: 0;
+  padding-top: 25px;
+  font-family: "Akshar", sans-serif;
+  background-color: black;
+}
+
+header,
+footer {
+  margin: 0;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+header {
+  padding: 30px 30px;
+}
+
+h1 {
+  margin: 0;
+  font-family: "Finger Paint", cursive;
+  font-size: 42px;
+}
+
+h2 {
+  margin: 0;
+  padding-top: 50px;
+  font-size: 22px;
+  font-family: "Akshar", sans-serif;
+  font-weight: 400;
+}
+
+.container {
+  background-color: white;
+  margin: auto;
+  padding: 30px 50px 50px 50px;
+  border-radius: 20px;
+  max-width: 600px;
+}
+
+.scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+
+.score-title {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 25px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+img {
+  height: 160px;
+}
+
+img:hover {
+  cursor: pointer;
+  transform: translateY(-5px);
+}
+
+img:active {
+  opacity: 0.5;
+}
+
+footer {
+  padding-top: 50px;
+}
