@@ -1,15 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Akshar:wght@300;400;500;600;700&family=Finger+Paint&display=swap");
 
 body {
+  min-height: 100vh;
   margin: 0;
   padding-top: 25px;
   font-family: "Akshar", sans-serif;
   background-color: black;
+  display: flex;
+  flex-direction: column;
 }
 
 header,
 footer {
-  margin: 0;
   background-color: black;
   color: white;
   text-align: center;
@@ -114,6 +116,7 @@ footer {
   padding-top: 50px;
   display: flex;
   justify-content: center;
+  margin-top: auto;
 }
 
 footer p {
